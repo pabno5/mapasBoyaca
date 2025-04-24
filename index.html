@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MapaColegios</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="Busqueda">
+        <select id="searchType" onchange="updateSearchFields()">
+            <option value="nombre">Buscar por Nombre</option>
+            <option value="provincia">Buscar por Provincia</option>
+            <option value="nombreSede">Buscar por Nombre de la sede</option>
+            <option value="municipio">Buscar por Nombre de Municipio</option>
+            <option value="codigomunicipio">Buscar por codigo de Municipio</option>
+            <option value="codigoDane">Buscar por codigo de DANE de la institucion</option>
+        </select>
+        <div id="searchFields">
+            <input type="text" id="searchInput" placeholder="Buscar Nombre de la institución..." />
+            <button id="searchButton">Buscar</button>
+        </div>
+    </div>
+    
+    <div id="map" style="width: 100%; height: 100vh;"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script>
+        function updateSearchFields() {
+            const searchType = document.getElementById('searchType').value;
+            const searchFields = document.getElementById('searchFields');
+            if (searchType === 'nombre') {
+                searchFields.innerHTML = `
+                    <input type="text" id="searchInput" placeholder="Buscar Nombre de la institución..." />
+                    <button id="searchButton">Buscar</button>
+                `;
+            } else if (searchType === 'provincia') {
+                searchFields.innerHTML = `
+                    <input type="text" id="searchInputProvincia" placeholder="Buscar Nombre de la PROVINCIA..." />
+                    <button id="searchButtonProvincia">Buscar</button>
+                `;
+            }else if (searchType === 'nombreSede') {
+                searchFields.innerHTML = `
+                    <input type="text" id="searchInputnombreSede" placeholder="Buscar Nombre de la Sede.." />
+                    <button id="searchButtonnombreSede">Buscar</button>
+                `;
+            }else if (searchType === 'municipio') {
+                searchFields.innerHTML = `
+                    <input type="text" id="searchInputmunicipio" placeholder="Buscar Nombre del municipio.." />
+                    <button id="searchButtonmunicipio">Buscar</button>
+                `;
+            }else if (searchType === 'codigomunicipio') {
+                searchFields.innerHTML = `
+                    <input type="text" id="searchInputcodigomunicipio" placeholder="Buscar Codigo del municipio.." />
+                    <button id="searchButtoncodigomunicipio">Buscar</button>
+                `;
+            }else if (searchType === 'codigoDane') {
+                searchFields.innerHTML = `
+                    <input type="text" id="searchInputcodigoDane" placeholder="Buscar Codigo Dane del colegio.." />
+                    <button id="searchButtoncodigoDane">Buscar</button>
+                `;
+            }
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
